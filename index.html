@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Luxias 中国上市短视频分镜预览与发布文案。">
+  <title>Luxias — 一眼看懂你的餐盘</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #ffffff;
+      --panel: #ffffff;
+      --panel-raised: #f3f6f6;
+      --line: #e1e7e8;
+      --ink: #17212a;
+      --muted: #687780;
+      --soft: #85939b;
+      --lime: #d6f34e;
+      --cyan: #24c8d2;
+      --coral: #ff4e6a;
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { min-width: 320px; margin: 0; color: var(--ink); background: radial-gradient(ellipse at 8% 0%, #142331 0, transparent 35%), var(--bg); }
+    button, textarea { font: inherit; }
+    button { color: inherit; -webkit-tap-highlight-color: transparent; }
+    .page { width: min(1280px, calc(100% - 52px)); margin: 0 auto; }
+    .masthead { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(143,166,173,.16); }
+    .brand { display: flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; color: #101820; background: var(--lime); font: 700 18px Georgia, serif; box-shadow: 0 0 22px rgba(207,246,90,.16); }
+    .brand-name { font-size: 15px; font-weight: 750; letter-spacing: .16em; }.brand-sub { display: block; margin-top: 3px; color: var(--soft); font-size: 8px; letter-spacing: .14em; }
+    .mast-meta { display: flex; align-items: center; gap: 9px; }
+    .top-pill { min-height: 30px; display: inline-flex; align-items: center; gap: 7px; padding: 0 10px; border: 1px solid var(--line); border-radius: 7px; color: #c3d0d1; background: rgba(20,31,42,.8); font-size: 9px; letter-spacing: .045em; white-space: nowrap; }
+    .top-pill b { color: var(--lime); font-size: 10px; }.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 9px rgba(255,121,87,.55); }
+    .hero { position: relative; display: flex; justify-content: space-between; align-items: end; gap: 26px; margin: 26px 0 22px; padding: 30px 34px; overflow: hidden; border: 1px solid #2c3b46; border-radius: 18px; background: linear-gradient(110deg, #182633, #121c27 68%, #17232f); }
+    .hero::after { content: ""; position: absolute; right: -76px; top: -150px; width: 350px; aspect-ratio: 1; border: 1px solid rgba(117,228,222,.2); border-radius: 50%; box-shadow: 0 0 0 24px rgba(117,228,222,.025), 0 0 0 62px rgba(117,228,222,.018); pointer-events: none; }
+    .hero-copy, .launch-callout { position: relative; z-index: 1; }
+    .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--lime); font-size: 9px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 17px; height: 2px; background: var(--coral); }
+    h1 { margin: 10px 0 7px; color: #f4f7f4; font: 550 clamp(27px, 3.3vw, 40px)/1.15 "PingFang SC", "Microsoft YaHei", sans-serif; letter-spacing: -.045em; }
+    .hero p { margin: 0; color: #a7b4b7; font-size: 11px; line-height: 1.7; }
+    .launch-callout { min-width: 182px; padding: 11px 14px 10px; border-left: 2px solid var(--lime); background: rgba(255,255,255,.035); }
+    .launch-callout small { display: block; color: #97a7ad; font-size: 8px; letter-spacing: .12em; }.launch-callout strong { display: block; margin-top: 4px; color: var(--lime); font: 600 17px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: -.03em; }.launch-callout span { display: block; margin-top: 4px; color: #b8c1c1; font-size: 8px; }
+    .layout { display: grid; grid-template-columns: minmax(350px, .9fr) minmax(430px, 1.1fr); align-items: start; gap: 20px; padding-bottom: 28px; }
+    .panel { overflow: hidden; border: 1px solid var(--line); border-radius: 15px; background: rgba(19,30,41,.94); box-shadow: 0 22px 65px rgba(0,0,0,.18); }
+    .panel-head { min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 17px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.018); }
+    .panel-title { margin: 0; color: #e7efeb; font-size: 11px; font-weight: 700; letter-spacing: .055em; }.panel-meta { color: #819199; font: 9px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .09em; }
+    .video-panel { padding-bottom: 16px; }.device { width: min(100% - 32px, 356px); margin: 16px auto 0; }
+    .screen { position: relative; width: 100%; aspect-ratio: 9 / 16; overflow: hidden; isolation: isolate; border: 5px solid #05090d; border-radius: 22px; background: #101924; box-shadow: 0 20px 48px rgba(0,0,0,.42), 0 0 0 1px #33414c; }
+    .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; pointer-events: none; transform: scale(1.025); transition: opacity .55s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+    .scene.active { opacity: 1; pointer-events: auto; transform: scale(1); }
+    .scene-one { color: #f4f7f3; background: radial-gradient(ellipse at 50% 54%, rgba(207,246,90,.14), transparent 40%), radial-gradient(ellipse at 90% 20%, rgba(117,228,222,.13), transparent 30%), linear-gradient(155deg, #243440, #0d151e 72%); }
+    .scene-one::before { content: ""; position: absolute; left: -18%; top: 39%; width: 136%; aspect-ratio: 1; border: 1px solid rgba(117,228,222,.17); border-radius: 50%; box-shadow: 0 0 0 22px rgba(117,228,222,.022), 0 0 0 58px rgba(117,228,222,.018); }
+    .scene-two { color: #17242c; background: radial-gradient(ellipse at 80% 20%, rgba(117,228,222,.22), transparent 31%), linear-gradient(150deg, #eaf0eb, #d8e2df); }
+    .scene-two::before { content: ""; position: absolute; top: 34%; left: -18%; width: 135%; aspect-ratio: 1; border: 1px solid rgba(19,49,56,.12); border-radius: 50%; box-shadow: 0 0 0 20px rgba(19,49,56,.025), 0 0 0 54px rgba(19,49,56,.018); }
+    .scene-three { color: #f2f7f3; background: radial-gradient(ellipse at 90% 48%, rgba(255,121,87,.13), transparent 36%), linear-gradient(150deg, #1d2f3c, #0c141d 75%); }
+    .video-top { position: absolute; z-index: 5; top: 4%; left: 6%; right: 6%; display: flex; align-items: center; justify-content: space-between; }
+    .video-brand { display: flex; align-items: center; gap: 7px; color: var(--lime); font-size: 7px; font-weight: 750; letter-spacing: .18em; }.mini-mark { width: 17px; height: 17px; display: grid; place-items: center; border: 1px solid var(--lime); border-radius: 5px; font: 9px Georgia, serif; }
+    .video-tag { padding: 5px 7px; border: 1px solid rgba(255,255,255,.19); border-radius: 5px; color: #cfdbda; background: rgba(10,17,23,.58); font-size: 7px; letter-spacing: .045em; backdrop-filter: blur(8px); }
+    .scene-title { position: absolute; z-index: 3; top: 13%; left: 7%; width: 86%; margin: 0; color: inherit; font-size: clamp(25px, 6.8vw, 34px); font-weight: 650; line-height: 1.16; letter-spacing: -.05em; text-align: center; }
+    .scene-title em { color: var(--lime); font-style: normal; }.scene-two .scene-title { top: 12%; font-size: clamp(22px, 6vw, 31px); }.scene-three .scene-title { top: 12.5%; text-align: left; font-size: clamp(24px, 6vw, 32px); }
+    .scene-sub { position: absolute; z-index: 3; top: 23.5%; left: 8%; width: 84%; margin: 0; color: rgba(235,243,238,.72); font-size: 8px; letter-spacing: .11em; text-align: center; }.scene-two .scene-sub { top: 23%; color: #60736f; }.scene-three .scene-sub { top: 23.5%; left: 8%; text-align: left; }
+    .scan-corners { position: absolute; z-index: 3; top: 39%; left: 13%; width: 74%; height: 21%; border: 1px solid rgba(207,246,90,.62); border-radius: 13px; box-shadow: 0 0 24px rgba(207,246,90,.12), inset 0 0 18px rgba(207,246,90,.045); pointer-events: none; }
+    .scan-corners::before, .scan-corners::after { content: ""; position: absolute; top: 0; bottom: 0; width: 11px; border-top: 3px solid var(--lime); border-bottom: 3px solid var(--lime); }.scan-corners::before { left: -1px; border-left: 3px solid var(--lime); border-radius: 4px 0 0 4px; }.scan-corners::after { right: -1px; border-right: 3px solid var(--lime); border-radius: 0 4px 4px 0; }
+    .scan-line { position: absolute; z-index: 4; top: 40%; left: 15%; width: 70%; height: 1px; background: linear-gradient(90deg, transparent, var(--lime), transparent); box-shadow: 0 0 10px rgba(207,246,90,.9); animation: scan 3s ease-in-out infinite; pointer-events: none; }
+    @keyframes scan { 0%,100% { transform: translateY(0); opacity: .25; } 50% { transform: translateY(104px); opacity: .9; } }
+    .glasses-photo, .meal-photo { position: absolute; z-index: 2; overflow: hidden; border: 1px solid rgba(255,255,255,.55); border-radius: 15px; background: #deddd4; box-shadow: 0 15px 33px rgba(0,0,0,.34); }
+    .glasses-photo { top: 52%; left: 8%; width: 84%; height: 23%; }
+    .glasses-photo img { position: absolute; top: -215%; left: 0; width: 190%; max-width: none; height: auto; }
+    .photo-caption { position: absolute; z-index: 4; right: 8%; bottom: 23%; padding: 5px 8px; border: 1px solid rgba(207,246,90,.45); border-radius: 5px; color: #ecf8d2; background: rgba(9,20,25,.82); font-size: 7px; letter-spacing: .04em; }
+    .macro-chip { position: absolute; z-index: 4; padding: 6px 8px; border: 1px solid rgba(117,228,222,.38); border-radius: 5px; color: #e9f2ee; background: rgba(13,25,34,.87); font-size: 7px; backdrop-filter: blur(8px); }.macro-chip b { color: var(--lime); font-size: 9px; }.chip-one { top: 33%; left: 6%; }.chip-two { top: 35%; right: 6%; }
+    .scene-two .meal-photo { top: 34%; left: 14%; width: 72%; height: 24%; border-color: rgba(255,255,255,.9); box-shadow: 0 12px 28px rgba(25,40,40,.18); }
+    .meal-photo img { position: absolute; top: -143%; left: -100%; width: 190%; max-width: none; height: auto; }
+    .meal-label { position: absolute; z-index: 3; top: 30%; left: 8%; color: #425853; font-size: 7px; letter-spacing: .08em; }
+    .nutrition-grid { position: absolute; z-index: 4; left: 7%; right: 7%; bottom: 14%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .nutrition-item { min-height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 4px; padding: 7px 8px; border: 1px solid rgba(25,47,54,.13); border-radius: 7px; color: #516561; background: rgba(250,252,247,.88); font-size: 8px; }.nutrition-item strong { color: #182d31; font-size: 10px; font-weight: 700; }
+    .scene-foot { position: absolute; z-index: 4; left: 7%; right: 7%; bottom: 5%; display: flex; align-items: center; justify-content: space-between; color: rgba(226,236,233,.55); font-size: 7px; letter-spacing: .07em; }.scene-two .scene-foot { color: #71837f; }.scene-foot b { color: var(--cyan); font: 700 8px ui-monospace, Consolas, monospace; }
+    .phone { position: absolute; z-index: 2; top: 31%; right: 9%; width: 51%; height: 49%; padding: 6px; border: 1px solid rgba(117,228,222,.55); border-radius: 19px; background: linear-gradient(145deg, #3b4b53, #080e14); box-shadow: 0 18px 36px rgba(0,0,0,.46); transform: rotate(4deg); }
+    .phone-screen { height: 100%; overflow: hidden; border-radius: 13px; color: #1b3033; background: #eff3ee; }
+    .phone-head { display: flex; justify-content: space-between; padding: 12px 9px 6px; font-size: 6px; font-weight: 800; letter-spacing: .1em; }.phone-date { padding: 0 9px; color: #748781; font-size: 6px; }
+    .phone-meal { height: 31%; margin: 8px; overflow: hidden; border-radius: 8px; background: url("assets/luxias-editorial-reference.png") 90% 58% / 220% auto no-repeat; }
+    .phone-stat { margin: 0 8px 6px; padding: 7px; border: 1px solid #e1e8df; border-radius: 7px; background: #fff; }.phone-stat strong { display: block; color: #243c3e; font: 14px Georgia,serif; }.phone-stat span { display: block; margin-top: 3px; color: #82908a; font-size: 6px; }
+    .phone-bars { display: flex; gap: 4px; margin: 0 8px; }.phone-bars i { height: 4px; flex: 1; border-radius: 5px; background: var(--lime); }.phone-bars i:nth-child(2) { background: #72cfc8; }.phone-bars i:nth-child(3) { background: var(--coral); }
+    .wechat-badge { position: absolute; z-index: 4; right: 6%; bottom: 25%; width: 45px; height: 45px; display: grid; place-items: center; border: 1px solid rgba(207,246,90,.55); border-radius: 12px; color: #101a20; background: var(--lime); box-shadow: 0 8px 21px rgba(0,0,0,.3); font-size: 7px; font-weight: 800; line-height: 1.15; text-align: center; }
+    .launch-date { position: absolute; z-index: 4; left: 8%; bottom: 17%; color: #f1f6f2; }.launch-date span { display: block; margin-bottom: 5px; color: var(--cyan); font-size: 7px; letter-spacing: .11em; }.launch-date strong { display: block; color: var(--lime); font: 600 17px ui-monospace, Consolas, monospace; letter-spacing: -.06em; }.launch-date small { display: block; margin-top: 5px; color: rgba(236,244,239,.64); font-size: 7px; }
+    .play-overlay { position: absolute; z-index: 7; top: 50%; left: 50%; width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.66); border-radius: 50%; color: var(--lime); background: rgba(8,16,23,.7); opacity: .88; cursor: pointer; transform: translate(-50%,-50%); transition: opacity .2s, transform .2s, background .2s; backdrop-filter: blur(8px); }.play-overlay:hover { opacity: 1; background: rgba(8,16,23,.94); transform: translate(-50%,-50%) scale(1.06); }.play-overlay svg { width: 17px; height: 17px; fill: currentColor; }.screen.playing .play-overlay { opacity: 0; }.screen.playing:hover .play-overlay, .screen.playing:focus-within .play-overlay { opacity: .78; }
+    .controls { padding: 14px 2px 0; }.control-row { display: flex; align-items: center; gap: 10px; }.control-play { width: 31px; height: 31px; flex: 0 0 31px; display: grid; place-items: center; border: 1px solid #34444f; border-radius: 50%; color: var(--lime); background: #182633; cursor: pointer; }.control-play svg { width: 12px; height: 12px; fill: currentColor; }.time-readout { color: #92a1a7; font: 9px ui-monospace, Consolas, monospace; white-space: nowrap; }
+    .progress { position: relative; height: 5px; flex: 1; overflow: hidden; border-radius: 99px; background: #34414a; cursor: pointer; }.progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--cyan), var(--lime)); transition: width .1s linear; }
+    .scene-list { display: grid; grid-template-columns: 3fr 5fr 4fr; gap: 6px; margin-top: 11px; }.scene-jump { min-height: 40px; padding: 6px 8px; border: 1px solid #2c3a44; border-radius: 7px; color: #96a5aa; background: #141f29; text-align: left; cursor: pointer; transition: border-color .2s, background .2s, color .2s; }.scene-jump span { display: block; font-size: 8px; font-weight: 700; }.scene-jump small { display: block; margin-top: 3px; color: #71818a; font-size: 7px; }.scene-jump.active { border-color: rgba(207,246,90,.55); color: var(--lime); background: #1d2b32; }.scene-jump.active small { color: #aab9a0; }
+    .caption-body { padding: 18px; }.caption-headline { display: flex; align-items: start; justify-content: space-between; gap: 14px; }.caption-heading { margin: 0; color: #f0f5f2; font-size: 14px; font-weight: 720; }.caption-description { margin: 5px 0 0; color: #8b9ba2; font-size: 9px; line-height: 1.55; }.channel-label { padding: 6px 8px; border: 1px solid #384750; border-radius: 5px; color: var(--cyan); background: #192731; font-size: 8px; white-space: nowrap; }
+    .language-tabs { display: inline-flex; gap: 3px; margin-top: 16px; padding: 3px; border: 1px solid #2b3944; border-radius: 7px; background: #0f1821; }.language-tabs button { min-width: 88px; min-height: 29px; padding: 0 10px; border: 0; border-radius: 5px; color: #8d9da3; background: transparent; font-size: 9px; cursor: pointer; }.language-tabs button[aria-pressed="true"] { color: #111a20; background: var(--lime); font-weight: 750; }
+    .copy-label { display: flex; justify-content: space-between; align-items: center; margin: 14px 0 7px; color: #9baab0; font-size: 9px; }.char-count { color: #71828a; }
+    .caption-text { display: block; width: 100%; min-height: 335px; resize: vertical; padding: 14px; border: 1px solid #31404a; border-radius: 8px; outline: none; color: #e1e9e4; background: #0e1720; font: 11px/1.85 "PingFang SC", "Microsoft YaHei", sans-serif; white-space: pre-wrap; }.caption-text:focus-visible { border-color: var(--lime); box-shadow: 0 0 0 3px rgba(207,246,90,.1); }
+    .french-panel { min-height: 335px; padding: 14px; border: 1px solid #31404a; border-radius: 8px; color: #bfcbcc; background: #0e1720; font-size: 10px; line-height: 1.72; }.french-panel h3 { margin: 0 0 6px; color: var(--lime); font-size: 10px; }.french-panel p { margin: 0 0 11px; }.french-panel ol { margin: 3px 0 12px; padding-left: 17px; }.french-panel li { margin: 5px 0; }
+    .caption-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }.editor-note { max-width: 225px; color: #829198; font-size: 8px; line-height: 1.55; }.copy-button { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 14px; border: 0; border-radius: 7px; color: #111a20; background: var(--lime); font-size: 10px; font-weight: 750; cursor: pointer; transition: background .2s, transform .2s; }.copy-button:hover { background: #ddff83; transform: translateY(-1px); }.copy-button.copied { color: #071116; background: var(--cyan); }.copy-button svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .footer { display: flex; justify-content: space-between; gap: 12px; padding: 0 0 22px; color: #667780; font-size: 8px; letter-spacing: .04em; }.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    @media (max-width: 940px) { .page { width: min(760px, calc(100% - 36px)); }.layout { grid-template-columns: 1fr; gap: 15px; }.device { width: min(100% - 24px, 370px); }.caption-panel { order: 2; } }
+    @media (max-width: 560px) { .page { width: calc(100% - 24px); }.masthead { min-height: 62px; }.brand-mark { width: 30px; height: 30px; }.brand-name { font-size: 13px; }.brand-sub { font-size: 7px; }.mast-meta .top-pill:first-child { display: none; }.top-pill { min-height: 28px; padding: 0 8px; font-size: 8px; }.hero { display: block; margin: 18px 0 15px; padding: 23px 19px; }.hero p { max-width: 325px; font-size: 10px; }.launch-callout { width: max-content; min-width: 175px; margin-top: 16px; }.layout { padding-bottom: 20px; }.panel { border-radius: 12px; }.panel-head { min-height: 48px; padding: 0 13px; }.device { width: min(100% - 16px, 350px); margin-top: 11px; }.screen { border-width: 4px; border-radius: 19px; }.caption-body { padding: 14px; }.caption-text, .french-panel { min-height: 300px; }.footer { flex-direction: column; font-size: 7px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+    /* White Douyin campaign workspace: keep the video cinematic, brighten the page chrome. */
+    body { color: var(--ink); background: #fff; }
+    .masthead { border-bottom-color: #e6ebec; }
+    .brand-name { color: #17212a; }
+    .brand-mark { color: #fff; background: #17212a; box-shadow: 0 0 0 2px #fff, 0 0 0 3px #17212a; }
+    .top-pill { border-color: #dfe6e7; color: #56656d; background: #f7f9f9; }
+    .top-pill b { color: #17212a; }
+    .hero { border-color: #e1e7e8; background: linear-gradient(115deg, #f1f7f6, #fff 62%, #fff5f6); box-shadow: 0 12px 36px rgba(22,38,45,.055); }
+    .hero h1 { color: #17212a; }
+    .hero p { color: #64747c; }
+    .eyebrow { color: #167b82; }
+    .launch-callout { border-left-color: var(--coral); background: rgba(255,255,255,.82); }
+    .launch-callout small, .launch-callout span { color: #73828a; }
+    .launch-callout strong { color: #17212a; }
+    .panel { border-color: #e1e7e8; background: #fff; box-shadow: 0 14px 42px rgba(23,39,48,.065); }
+    .panel-head { border-bottom-color: #e7ecec; background: #f8fafa; }
+    .panel-title { color: #25323a; }
+    .panel-meta { color: #77868d; }
+    .control-play { border-color: #d8e1e2; color: #17212a; background: #fff; }
+    .time-readout { color: #63737b; }
+    .progress { background: #e4ebeb; }
+    .progress-fill { background: linear-gradient(90deg, var(--cyan), var(--coral)); }
+    .scene-jump { border-color: #e1e7e8; color: #596b73; background: #fff; }
+    .scene-jump small { color: #8b999f; }
+    .scene-jump.active { border-color: rgba(255,78,106,.42); color: #17212a; background: #fff4f5; }
+    .scene-jump.active small { color: #a34d5b; }
+    .caption-heading { color: #17212a; }
+    .caption-description, .copy-label { color: #62727a; }
+    .channel-label { border-color: #dce5e7; color: #17212a; background: #f4f8f8; }
+    .language-tabs { border-color: #dce4e5; background: #f1f4f4; }
+    .language-tabs button { color: #65757c; }
+    .language-tabs button[aria-pressed="true"] { color: #fff; background: #17212a; }
+    .caption-text, .french-panel { border-color: #dce4e5; color: #26343c; background: #fff; }
+    .caption-text:focus-visible { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(36,200,210,.13); }
+    .french-panel h3 { color: #17212a; }
+    .editor-note { color: #6e7d84; }
+    .copy-button { color: #fff; background: #17212a; }
+    .copy-button:hover { color: #10181e; background: var(--lime); }
+    .copy-button.copied { color: #10181e; background: var(--cyan); }
+    .footer { color: #7e8b91; }
+    .scene-two .mini-mark { border-color: #167c80; color: #167c80; }
+    .scene-two .scene-foot b { color: #17747a; }
+    .douyin-badge { min-height: 38px; display: inline-flex; align-items: center; gap: 9px; padding: 4px 11px 4px 5px; border: 1px solid #e2e7e8; border-radius: 9px; color: #17212a; background: #fff; box-shadow: 0 3px 12px rgba(20,35,42,.05); }
+    .douyin-glyph { position: relative; width: 27px; height: 27px; display: grid; place-items: center; border-radius: 7px; color: white; background: #111820; font: 700 19px/1 Arial, sans-serif; text-shadow: -2px 0 var(--cyan), 2px 0 var(--coral); }
+    .douyin-copy strong { display: block; font-size: 9px; font-weight: 800; letter-spacing: .06em; }.douyin-copy small { display: block; margin-top: 2px; color: #75838a; font-size: 7px; }
+    @media (max-width: 560px) { .douyin-badge { min-height: 32px; gap: 6px; padding-right: 7px; }.douyin-glyph { width: 23px; height: 23px; font-size: 16px; }.douyin-copy strong { font-size: 8px; }.douyin-copy small { font-size: 6px; }.top-pill { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <a class="brand" href="#top" aria-label="Luxias"><span class="brand-mark">L</span><span><span class="brand-name">LUXIAS</span><span class="brand-sub">VISION NUTRITION · CHINA</span></span></a>
+      <div class="mast-meta">
+        <div class="douyin-badge" aria-label="Douyin, 中国版 TikTok"><span class="douyin-glyph" aria-hidden="true">♪</span><span class="douyin-copy"><strong>抖音 · DOUYIN</strong><small>中国版 TikTok · TikTok chinois</small></span></div>
+        <span class="top-pill"><b>小红书 RED</b> · 同步话题</span>
+        <span class="top-pill"><i class="live-dot"></i> LAUNCH FILM · 12 SEC</span>
+      </div>
+    </header>
+    <main id="top">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy"><div class="eyebrow">DOUYIN SHORT VIDEO · 中国版 TIKTOK</div><h1 id="page-title">一眼看懂你的餐盘</h1><p>专为中国抖音打造的 12 秒竖屏短视频预览。无需手动记录，轻松查看每一餐的宏量营养信息。</p></div>
+        <div class="launch-callout"><small>CHINA LAUNCH · CROSS-BORDER E-COMMERCE</small><strong>2027.09.01</strong><span>关注 Luxias，获取开售消息</span></div>
+      </section>
+      <div class="layout">
+        <section class="panel video-panel" aria-labelledby="video-heading">
+          <div class="panel-head"><h2 class="panel-title" id="video-heading">抖音短视频预览</h2><span class="panel-meta">DOUYIN · 中国版 TikTok · 9:16</span></div>
+          <div class="device">
+            <div class="screen" id="screen" aria-label="Luxias 竖屏视频预览" tabindex="0">
+              <article class="scene scene-one active" data-scene="0" aria-label="第一幕：一眼看懂你的餐盘">
+                <div class="video-top"><div class="video-brand"><span class="mini-mark">L</span> LUXIAS</div><span class="video-tag">SMART GLASSES · MEAL SCAN</span></div>
+                <h3 class="scene-title">一眼看懂<br><em>你的餐盘</em></h3><p class="scene-sub">无需手动输入，让一餐信息即时呈现</p>
+                <div class="scan-corners" aria-hidden="true"></div><div class="scan-line" aria-hidden="true"></div>
+                <div class="macro-chip chip-one">蛋白质 <b>22 克</b></div><div class="macro-chip chip-two">热量 <b>680 千卡</b></div>
+                <div class="glasses-photo"><img src="assets/luxias-editorial-reference.png" alt="Luxias 轻盈智能眼镜实物特写，深绿色镜框和金属镜腿置于浅色餐盘上"></div>
+                <span class="photo-caption">轻盈智能眼镜 · 餐盘扫描</span>
+                <div class="scene-foot"><span>营养数据仅作示意</span><b>01 / 03</b></div>
+              </article>
+              <article class="scene scene-two" data-scene="1" aria-label="第二幕：运动之后与日常餐桌" aria-hidden="true">
+                <div class="video-top"><div class="video-brand" style="color:#1b5555"><span class="mini-mark">L</span> LUXIAS · DAILY FUEL</div><span class="video-tag" style="color:#465d5b;background:rgba(255,255,255,.64)">训练之后 · 日常之中</span></div>
+                <h3 class="scene-title">训练之后，<br><em style="color:#4b9b8d">日常之中。</em></h3><p class="scene-sub">一碗主食，一餐家常菜，营养信息一览</p>
+                <span class="meal-label">运动后的一餐 · 熟悉的本地风味</span>
+                <div class="meal-photo"><img src="assets/luxias-editorial-reference.png" alt="一碗本地风味面食的餐食特写"></div>
+                <div class="nutrition-grid"><div class="nutrition-item"><span>蛋白质</span><strong>22 克</strong></div><div class="nutrition-item"><span>碳水</span><strong>62 克</strong></div><div class="nutrition-item"><span>脂肪</span><strong>18 克</strong></div><div class="nutrition-item"><span>热量</span><strong>680 千卡</strong></div></div>
+                <div class="scene-foot"><span>一餐营养参考 · 示例</span><b>02 / 03</b></div>
+              </article>
+              <article class="scene scene-three" data-scene="2" aria-label="第三幕：同步应用与中国上市日期" aria-hidden="true">
+                <div class="video-top"><div class="video-brand"><span class="mini-mark">L</span> LUXIAS · COMING SOON</div><span class="video-tag">中国上市预告</span></div>
+                <h3 class="scene-title">每一餐，<br><em>同步随行。</em></h3><p class="scene-sub">Luxias 应用 × 微信小程序</p>
+                <div class="phone" aria-label="Luxias 应用界面示意"><div class="phone-screen"><div class="phone-head"><span>LUXIAS</span><span>•••</span></div><div class="phone-date">今日 · 我的餐盘</div><div class="phone-meal"></div><div class="phone-stat"><strong>680 <small>千卡</small></strong><span>热量 · 一餐参考</span></div><div class="phone-bars"><i></i><i></i><i></i></div><div class="phone-stat"><span>蛋白质　22 克　·　碳水　62 克</span></div></div></div>
+                <div class="wechat-badge">微信<br>小程序</div>
+                <div class="launch-date"><span>跨境电商 · 正式登陆中国</span><strong>2027年9月1日</strong><small>关注我们，获取开售消息与后续进展</small></div>
+                <div class="scene-foot"><span>LUXIAS · CHINA</span><b>03 / 03</b></div>
+              </article>
+              <button class="play-overlay" id="screen-play" type="button" aria-label="播放视频"><svg viewBox="0 0 20 20"><path d="M6 3.7c0-.8.9-1.3 1.6-.8l9 5.8a1.5 1.5 0 0 1 0 2.6l-9 5.8c-.7.5-1.6 0-1.6-.8V3.7Z"/></svg></button>
+            </div>
+            <div class="controls">
+              <div class="control-row"><button class="control-play" id="play-button" type="button" aria-label="播放"><svg viewBox="0 0 20 20"><path d="M6 3.7c0-.8.9-1.3 1.6-.8l9 5.8a1.5 1.5 0 0 1 0 2.6l-9 5.8c-.7.5-1.6 0-1.6-.8V3.7Z"/></svg></button><span class="time-readout" id="time-readout">00:00 / 00:12</span><div class="progress" id="progress" role="slider" aria-label="进度" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" tabindex="0"><div class="progress-fill" id="progress-fill"></div></div></div>
+              <div class="scene-list" role="group" aria-label="按场景跳转"><button class="scene-jump active" data-start="0" type="button" aria-pressed="true"><span>01 · 一眼识别</span><small>00:00 — 00:03</small></button><button class="scene-jump" data-start="3" type="button" aria-pressed="false"><span>02 · 运动与日常</span><small>00:03 — 00:08</small></button><button class="scene-jump" data-start="8" type="button" aria-pressed="false"><span>03 · 同步上市</span><small>00:08 — 00:12</small></button></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel caption-panel" aria-labelledby="caption-heading">
+          <div class="panel-head"><h2 class="panel-title" id="caption-heading">抖音发布文案</h2><span class="panel-meta">DOUYIN&nbsp; / &nbsp;RED</span></div>
+          <div class="caption-body">
+            <div class="caption-headline"><div><h3 class="caption-heading">视频配文</h3><p class="caption-description">简体中文发布稿 · 抖音主发 · 含关注引导与平台话题</p></div><span class="channel-label">抖音主发 / 小红书同步</span></div>
+            <div class="language-tabs" role="group" aria-label="文案语言"><button id="tab-zh" type="button" aria-pressed="true">中文发布文案</button><button id="tab-fr" type="button" aria-pressed="false">Repères FR</button></div>
+            <div id="zh-content"><label class="copy-label" for="caption-text"><span>可复制的发布文案</span><span class="char-count" id="char-count">0 字</span></label><textarea class="caption-text" id="caption-text" lang="zh-Hans" spellcheck="false" aria-label="可编辑的简体中文发布文案"></textarea></div>
+            <div class="french-panel" id="fr-content" lang="fr" hidden>
+              <h3>Traduction de la légende</h3>
+              <p>🏃 Après l’entraînement comme au quotidien, découvrez votre assiette d’un regard. Avec les lunettes intelligentes Luxias, consultez les repères d’un repas — calories, protéines, glucides et lipides — sans saisie manuelle.</p>
+              <p>Synchronisation avec l’application Luxias et le mini-programme WeChat. Arrivée officielle en Chine le 1er septembre 2027 via le e-commerce transfrontalier.</p>
+              <p>Abonnez-vous au compte officiel Luxias pour suivre les prochaines étapes du lancement.</p>
+              <h3>Repères des 3 scènes</h3><ol><li><b>0–3 s · Accroche :</b> votre assiette, claire en un regard ; scan sans saisie manuelle.</li><li><b>3–8 s · Usages :</b> repas post-entraînement, bols et nouilles du quotidien ; 4 repères nutritionnels.</li><li><b>8–12 s · Lancement :</b> synchro app Luxias + mini-programme WeChat ; Chine, 1er septembre 2027.</li></ol>
+              <p><b>Note équipe :</b> les valeurs affichées sont illustratives. Contenu descriptif, sans allégation médicale.</p>
+            </div>
+            <div class="caption-actions"><span class="editor-note">数据仅作示意 · Contenu descriptif, sans allégation médicale</span><button class="copy-button" id="copy-button" type="button"><svg viewBox="0 0 20 20"><rect x="6.5" y="6.5" width="9" height="10" rx="1.5"/><path d="M12.5 6.5v-2A1.5 1.5 0 0 0 11 3H5A1.5 1.5 0 0 0 3.5 4.5v8A1.5 1.5 0 0 0 5 14h1.5"/></svg><span id="copy-label">复制 / Copier</span></button></div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer"><span>LUXIAS · SPORT-TECH STORY</span><span>营养数据仅作示意 · 不含医疗功效宣称</span></footer>
+  </div>
+  <div id="live-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <script>
+    const defaultCaption = `🏃 训练之后，日常之中，让每一餐清晰可见。
+
+戴上 Luxias 智能眼镜，一眼查看一餐中的热量、蛋白质、碳水和脂肪，无需手动记录。
+
+与 Luxias 应用及微信小程序同步，轻松回看每一餐的营养信息。
+
+Luxias 将于 2027年9月1日 通过跨境电商渠道正式登陆中国。
+
+关注 Luxias 官方账号，获取开售消息与后续进展。
+
+#运动营养 #健身日常 #运动饮食 #训练后吃什么 #智能眼镜 #智能穿戴 #运动科技 #营养记录 #跨境电商 #Luxias中国上市 #2027年9月1日`;
+    const caption = document.getElementById("caption-text");
+    const scenes = [...document.querySelectorAll(".scene")];
+    const sceneButtons = [...document.querySelectorAll(".scene-jump")];
+    const screen = document.getElementById("screen");
+    const playButton = document.getElementById("play-button");
+    const overlayButton = document.getElementById("screen-play");
+    const progress = document.getElementById("progress");
+    const progressFill = document.getElementById("progress-fill");
+    const timeReadout = document.getElementById("time-readout");
+    const liveStatus = document.getElementById("live-status");
+    const total = 12;
+    let elapsed = 0;
+    let playing = false;
+    let timer = null;
+    const storageKey = "luxias-douyin-caption-zh";
+    try { caption.value = localStorage.getItem(storageKey) || defaultCaption; } catch { caption.value = defaultCaption; }
+    caption.addEventListener("input", () => { try { localStorage.setItem(storageKey, caption.value); } catch {} updateCount(); });
+
+    function sceneIndex(time) { return time < 3 ? 0 : time < 8 ? 1 : 2; }
+    function clockText(seconds) { return "00:" + String(Math.floor(seconds)).padStart(2, "0"); }
+    function renderPlayback(announce) {
+      const index = sceneIndex(elapsed);
+      scenes.forEach((scene, i) => { scene.classList.toggle("active", i === index); scene.setAttribute("aria-hidden", String(i !== index)); });
+      sceneButtons.forEach((button, i) => { const selected = i === index; button.classList.toggle("active", selected); button.setAttribute("aria-pressed", String(selected)); });
+      progressFill.style.width = (elapsed / total * 100) + "%";
+      progress.setAttribute("aria-valuenow", String(Math.round(elapsed)));
+      timeReadout.textContent = clockText(elapsed) + " / 00:12";
+      screen.classList.toggle("playing", playing);
+      const playIcon = playing ? '<svg viewBox="0 0 20 20"><path d="M5 4h3.5v12H5zM11.5 4H15v12h-3.5z"/></svg>' : '<svg viewBox="0 0 20 20"><path d="M6 3.7c0-.8.9-1.3 1.6-.8l9 5.8a1.5 1.5 0 0 1 0 2.6l-9 5.8c-.7.5-1.6 0-1.6-.8V3.7Z"/></svg>';
+      playButton.innerHTML = playIcon; overlayButton.innerHTML = playIcon;
+      playButton.setAttribute("aria-label", playing ? "暂停" : "播放"); overlayButton.setAttribute("aria-label", playing ? "暂停视频" : "播放视频");
+      if (announce) liveStatus.textContent = "已切换至第 " + (index + 1) + " 幕。";
+    }
+    function setPlaying(value) {
+      playing = value;
+      if (playing && elapsed >= total) elapsed = 0;
+      clearInterval(timer);
+      if (playing) timer = window.setInterval(() => { elapsed = Math.min(total, elapsed + .1); if (elapsed >= total) { playing = false; clearInterval(timer); } renderPlayback(false); }, 100);
+      renderPlayback(false);
+    }
+    function seek(time) { elapsed = Math.max(0, Math.min(total, time)); renderPlayback(true); }
+    playButton.addEventListener("click", () => setPlaying(!playing));
+    overlayButton.addEventListener("click", () => setPlaying(!playing));
+    sceneButtons.forEach(button => button.addEventListener("click", () => seek(Number(button.dataset.start))));
+    progress.addEventListener("click", event => { const rect = progress.getBoundingClientRect(); seek((event.clientX - rect.left) / rect.width * total); });
+    progress.addEventListener("keydown", event => {
+      if (event.key === "ArrowRight") { event.preventDefault(); seek(elapsed + 1); }
+      if (event.key === "ArrowLeft") { event.preventDefault(); seek(elapsed - 1); }
+      if (event.key === "Home") { event.preventDefault(); seek(0); }
+      if (event.key === "End") { event.preventDefault(); seek(total); }
+    });
+    const tabZh = document.getElementById("tab-zh");
+    const tabFr = document.getElementById("tab-fr");
+    const zhContent = document.getElementById("zh-content");
+    const frContent = document.getElementById("fr-content");
+    function setLanguage(zh) { tabZh.setAttribute("aria-pressed", String(zh)); tabFr.setAttribute("aria-pressed", String(!zh)); zhContent.hidden = !zh; frContent.hidden = zh; }
+    tabZh.addEventListener("click", () => setLanguage(true)); tabFr.addEventListener("click", () => setLanguage(false));
+    function updateCount() { document.getElementById("char-count").textContent = [...caption.value].length.toLocaleString("zh-CN") + " 字"; }
+    document.getElementById("copy-button").addEventListener("click", async () => {
+      const button = document.getElementById("copy-button");
+      try { await navigator.clipboard.writeText(caption.value); }
+      catch { caption.focus(); caption.select(); try { document.execCommand("copy"); } catch {} caption.setSelectionRange(caption.value.length, caption.value.length); }
+      button.classList.add("copied"); document.getElementById("copy-label").textContent = "已复制 / Copié"; liveStatus.textContent = "中文发布文案已复制。";
+      window.setTimeout(() => { button.classList.remove("copied"); document.getElementById("copy-label").textContent = "复制 / Copier"; }, 1800);
+    });
+    updateCount(); renderPlayback(false);
+  </script>
+</body>
+</html>
